@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casamento dos Noivos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Página Inicial -->
+    <header>
+        <div class="banner">
+            <img src="Casamento.png" alt="Banner do Casamento">
+        </div>
+        <div class="hero">
+            <h1>Bem-vindos ao Casamento de Ana e João</h1>
+            <p>Estamos ansiosos para celebrar este dia especial com você!</p>
+        </div>
+    </header><br>
+
+    <!-- Confirmação de Presença -->
+    <section id="confirmacao">
+        <h2>Confirme Sua Presença</h2>
+        <form action="#" method="post">
+            <label for="nome">Nome Completo:</label>
+            <input type="text" id="nome" name="nome" required>
+            
+            <label for="acompanhantes">Número de Acompanhantes:</label>
+            <input type="number" id="acompanhantes" name="acompanhantes" min="0" required>
+            
+            <label for="observacoes">Observações:</label>
+            <textarea id="observacoes" name="observacoes"></textarea>
+            
+            <button type="submit">Confirmar Presença</button>
+        </form>
+    </section>
+<!-- Presentes -->
+<section id="presentes">
+    <h2>Presentes</h2>
+    <p>Para aqueles que desejam contribuir, aceitamos presentes via Pix.</p>
+    <img src="qrcode-pix.png" alt="QR Code Pix" class="qr-code">
+    <div class="pix-key-container">
+        <span id="pix-key" class="pix-key">16e22b35-bc04-49d5-bde5-f3862365058f</span>
+        <button id="copy-btn">Copiar</button>
+        <div id="copy-message" class="copy-message">Copiado!</div>
+    </div>
+</section>
+
+
+    <!-- Localização -->
+    <section id="localizacao">
+        <h2>Localização</h2>
+        <p>O casamento será realizado em:</p>
+        <p><strong>Local da Cerimônia</strong></p>
+        <p>Rua das Flores, 123 - Jardim das Rosas, São Paulo - SP</p>
+        <div id="map"></div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>&copy; 2024 Ana e João. Todos os direitos reservados.</p>
+    </footer>
+
+    
+    <script>
+       document.addEventListener('DOMContentLoaded', function() {
+        var pixKey = document.getElementById('pix-key');
+        var copyBtn = document.getElementById('copy-btn');
+        var copyMessage = document.getElementById('copy-message');
+
+        copyBtn.addEventListener('click', function() {
+            // Cria um elemento temporário para a cópia
+            var tempInput = document.createElement('input');
+            tempInput.value = pixKey.textContent;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            try {
+                // Copia o texto para a área de transferência
+                document.execCommand('copy');
+                // Exibe a mensagem de sucesso
+                copyMessage.style.display = 'inline';
+                setTimeout(function() {
+                    copyMessage.style.display = 'none';
+                }, 2000); // A mensagem desaparece após 2 segundos
+            } catch (err) {
+                console.error('Erro ao copiar a chave Pix: ', err);
+            }
+            // Remove o elemento temporário
+            document.body.removeChild(tempInput);
+        });
+    });
+</script>
+
+    <style>
+/* Seção Presentes */
+#presentes {
+    padding: 2em 1em;
+    max-width: 800px;
+    margin: auto;
+    background: #fff; /* Fundo branco */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    text-align: center;
+}
+
+.pix-key-container {
+    margin: 1.5em 0;
+    position: relative;
+}
+
+.pix-key {
+    display: inline-block;
+    padding: 1em;
+    border: 2px solid #b06c6c; /* Cor rosa escuro */
+    border-radius: 8px;
+    background: #fff; /* Fundo branco */
+    font-size: 1.2em;
+    color: #333;
+    cursor: pointer;
+    user-select: none; /* Impede a seleção do texto */
+}
+
+.copy-message {
+    display: none;
+    color: #28a745; /* Cor verde para a mensagem de sucesso */
+    font-size: 1em;
+    margin-top: 0.5em;
+    font-weight: bold;
+}
+
+#copy-btn {
+    margin-top: 1em;
+    padding: 0.75em 1.5em;
+    border: none;
+    border-radius: 4px;
+    background: #b06c6c; /* Cor rosa escuro */
+    color: #fff;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+#copy-btn:hover {
+    background: #a05a5a; /* Cor rosa escuro para hover */
+}
+
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Corpo e fontes */
+body {
+    font-family: 'Georgia', serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f9f3f2; /* Fundo suave para contraste */
+}
+
+/* Header */
+header {
+    position: relative;
+}
+
+/* Banner */
+.banner {
+    width: 100%;
+    height: auto; /* Altura ajustável com base na imagem */
+}
+
+.banner img {
+    width: 100%;
+    height: auto; /* Mantém a proporção da imagem */
+    display: block;
+}
+
+/* Seção Hero */
+.hero {
+    text-align: center;
+    padding: 2em 1em;
+    background: #FADCD9; /* Fundo escuro semi-transparente para melhor legibilidade */
+    color: #333333; /* Texto branco para contraste */
+}
+
+.hero h1 {
+    font-size: 2.5em; /* Ajuste do tamanho do título */
+    margin-bottom: 0.5em;
+    font-family: 'Playfair Display', serif; /* Fonte elegante */
+}
+
+.hero p {
+    font-size: 1.2em;
+    font-family: 'Arial', sans-serif; /* Fonte limpa e legível */
+}
+
+/* Seções */
+section {
+    padding: 2em 1em;
+    max-width: 800px;
+    margin: auto;
+    background: #fff; /* Fundo branco para contraste */
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    margin-bottom: 2em; /* Espaço entre seções */
+}
+
+h2 {
+    border-bottom: 2px solid #b06c6c; /* Linha inferior rosa */
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    font-size: 1.8em;
+    color: #b06c6c; /* Cor do título em rosa escuro */
+}
+
+/* Formulário */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 0.5em;
+    font-weight: bold;
+}
+
+input, textarea {
+    padding: 0.75em;
+    margin-bottom: 1em;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+button {
+    background: #b06c6c; /* Cor rosa para o botão */
+    color: #fff;
+    padding: 0.75em;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #a05a5a; /* Cor rosa escuro para o hover */
+}
+
+/* QR Code */
+.qr-code {
+    width: 150px;
+    margin: 1em 0;
+}
+
+/* Mapa */
+#map {
+    height: 400px;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/* Rodapé */
+footer {
+    background: #b06c6c; /* Cor rosa para o rodapé */
+    color: #fff;
+    text-align: center;
+    padding: 1em 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 768px) {
+    .hero {
+        padding: 1.5em 1em; /* Ajusta o padding para telas menores */
+    }
+
+    .hero h1 {
+        font-size: 2em; /* Reduz o tamanho do título */
+    }
+
+    .hero p {
+        font-size: 1em; /* Reduz o tamanho da fonte do parágrafo */
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 1em 1em; /* Ajusta o padding para telas muito pequenas */
+    }
+
+    .hero h1 {
+        font-size: 1.5em; /* Reduz ainda mais o tamanho do título */
+    }
+
+    .hero p {
+        font-size: 0.9em; /* Reduz o tamanho da fonte do parágrafo */
+    }
+}
+
+        </style>
+</body>
+</html>
