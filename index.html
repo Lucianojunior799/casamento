@@ -55,7 +55,7 @@
 
 <input type="hidden" name="_captcha" value="false">
 
-    <input type="hidden" name="_next" value="https://casamentojadeluciano.netlify.app/#confirmacao">
+    <input type="hidden" name="_next" value="https://casamentojadeluciano.netlify.app/?reload=true">
         <br>
         <!-- Botão de Envio -->
         <button type="submit">Confirmar Presença</button>
@@ -158,6 +158,43 @@
                 }, 500);
             });
         });
+
+        document.addEventListener('DOMContentLoaded', function() {
+    // Função para obter parâmetros da URL
+    function getQueryParams() {
+        var params = {};
+        window.location.search.substring(1).split('&').forEach(function(pair) {
+            var [key, value] = pair.split('=');
+            params[key] = decodeURIComponent(value);
+        });
+        return params;
+    }
+
+    // Função para atualizar a URL sem recarregar a página
+    function updateURL(newParams) {
+        var url = new URL(window.location);
+        Object.keys(newParams).forEach(function(key) {
+            if (newParams[key] === null) {
+                url.searchParams.delete(key);
+            } else {
+                url.searchParams.set(key, newParams[key]);
+            }
+        });
+        window.history.replaceState({}, '', url);
+    }
+
+    // Verifica se o parâmetro 'reload' está presente na URL
+    var params = getQueryParams();
+    if (params.reload === 'true') {
+        // Remove o parâmetro da URL
+        updateURL({ reload: null });
+
+        // Recarrega a página após um pequeno atraso
+        setTimeout(function() {
+            window.location.reload();
+        }, 100); // Ajuste o tempo conforme necessário
+    }
+});
 </script>
 
         
