@@ -77,13 +77,14 @@
 
 
     <!-- Localização -->
-    <section id="localizacao">
-        <h2>Localização</h2>
-        <p>O casamento será realizado em:</p>
-        <p><strong>Local da Cerimônia</strong></p>
-        <p>Rua das Flores, 123 - Jardim das Rosas, São Paulo - SP</p>
-        <div id="map"></div>
-    </section>
+<section id="localizacao">
+    <h2>Localização</h2>
+    <p>O casamento será realizado em um local encantador, que garantirá uma experiência inesquecível para todos.</p>
+    <p><strong>Local da Cerimônia</strong></p>
+    <p>Rua das Flores, 123 - Jardim das Rosas, São Paulo - SP</p>
+    <a href="https://www.google.com/maps/search/?api=1&query=-23.5505,-46.6333" target="_blank" class="map-link">Abra no Google Maps</a>
+</section>
+
 
     <!-- Rodapé -->
     <footer>
@@ -342,6 +343,47 @@ footer {
     .hero p {
         font-size: 0.9em; /* Reduz o tamanho da fonte do parágrafo */
     }
+}
+
+        /* Seção Localização */
+#localizacao {
+    padding: 2em 1em;
+    max-width: 800px;
+    margin: auto;
+    background: #fff; /* Fundo branco para contraste */
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    text-align: center;
+}
+
+#localizacao h2 {
+    border-bottom: 2px solid #b06c6c; /* Linha inferior rosa */
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    font-size: 1.8em;
+    color: #b06c6c; /* Cor do título em rosa escuro */
+}
+
+#localizacao p {
+    font-size: 1.2em;
+    color: #333; /* Cor do texto */
+    margin-bottom: 1em;
+}
+
+.map-link {
+    display: inline-block;
+    padding: 0.75em 1.5em;
+    border: none;
+    border-radius: 4px;
+    background: #b06c6c; /* Cor rosa */
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1em;
+    cursor: pointer;
+}
+
+.map-link:hover {
+    background: #a05a5a; /* Cor rosa escuro para hover */
 }
 
         </style>
