@@ -18,9 +18,10 @@
         </div>
     </header><br>
 
-    <section id="confirmacao">
+    <!-- Confirmação de Presença -->
+<section id="confirmacao">
     <h2>Confirme Sua Presença</h2>
-    <form action="https://formsubmit.co/centralcasamentojadeluciano@gmail.com" method="POST">
+    <form id="confirmacao-form" action="https://formsubmit.co/centralcasamentojadeluciano@gmail.com" method="POST">
         <!-- Campo para confirmação de presença -->
         <label>Você comparecerá ao evento?</label>
         <div>
@@ -55,7 +56,12 @@
         <!-- Botão de Envio -->
         <button type="submit">Confirmar Presença</button>
     </form>
+    <!-- Mensagem de carregamento -->
+    <div id="loading-message" class="loading-message" style="display:none;">
+        Aguarde um momento, não saia da página e não aperte em enviar novamente. Estamos processando...
+    </div>
 </section>
+
 
 
 <section id="presentes">
@@ -119,10 +125,43 @@
             document.body.removeChild(tempInput);
         });
     });
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var form = document.getElementById('confirmacao-form');
+        var loadingMessage = document.getElementById('loading-message');
+
+        form.addEventListener('submit', function(event) {
+            // Exibe a mensagem de carregamento
+            loadingMessage.style.display = 'block';
+            
+            // Oculta o formulário
+            form.style.display = 'none';
+            
+            // Adiciona um delay para simular processamento (opcional)
+            setTimeout(function() {
+                // Você pode adicionar lógica adicional aqui se necessário
+            }, 500);
+        });
+    });
+</script>
+
+        
 </script>
 
     <style>
-       
+       /* Mensagem de Carregamento */
+.loading-message {
+    margin-top: 1em;
+    padding: 1em;
+    background: #f7f7f7;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1em;
+    color: #333;
+    text-align: center;
+    font-weight: bold;
+}
+
         
 /* Seção Presentes */
 
