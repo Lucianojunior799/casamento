@@ -127,40 +127,33 @@
     });
 
   document.addEventListener('DOMContentLoaded', function() {
-    var form = document.getElementById('confirmacao-form');
-    var loadingMessage = document.getElementById('loading-message');
+            var form = document.getElementById('confirmacao-form');
+            var loadingMessage = document.getElementById('loading-message');
 
-    // Se a página foi recarregada após o envio do formulário
-    if (sessionStorage.getItem('formSubmitted')) {
-        form.reset(); // Reseta o formulário
-        sessionStorage.removeItem('formSubmitted'); // Remove o item para evitar loop infinito
-        form.style.display = 'block'; // Mostra o formulário novamente
-        setTimeout(function() {
-            window.location.reload(); // Recarrega a página após 10 segundos
-        }, 10000);
-    }
+            // Se a página foi recarregada após o envio do formulário
+            if (sessionStorage.getItem('formSubmitted')) {
+                form.reset(); // Reseta o formulário
+                sessionStorage.removeItem('formSubmitted'); // Remove o item para evitar loop infinito
+                form.style.display = 'block'; // Mostra o formulário novamente
+            }
 
-    form.addEventListener('submit', function(event) {
-        // Exibe a mensagem de carregamento
-        loadingMessage.style.display = 'block';
+            form.addEventListener('submit', function(event) {
+                // Exibe a mensagem de carregamento
+                loadingMessage.style.display = 'block';
 
-        // Oculta o formulário
-        form.style.display = 'none';
+                // Oculta o formulário
+                form.style.display = 'none';
 
-        // Adiciona um delay para simular processamento
-        setTimeout(function() {
-            // Marca que o formulário foi enviado
-            sessionStorage.setItem('formSubmitted', 'true');
-            
-            // Rola para a mensagem de carregamento
-            var offset = 200; // Ajuste este valor para rolar um pouco mais para cima
-            loadingMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-            // Rola um pouco mais para cima após a rolagem
-            window.scrollBy(0, -offset);
-        }, 500);
-    });
-});
+                // Adiciona um delay para simular processamento (opcional)
+                setTimeout(function() {
+                    // Marca que o formulário foi enviado
+                    sessionStorage.setItem('formSubmitted', 'true');
+                    
+                    // Rola para a mensagem de carregamento
+                    loadingMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 500);
+            });
+        });
 
 </script>
 
