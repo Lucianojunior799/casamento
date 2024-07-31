@@ -58,8 +58,8 @@
     </form>
     <!-- Mensagem de carregamento -->
     <div id="loading-message" class="loading-message" style="display:none;">
-        Aguarde um momento, não saia da página e não aperte em enviar novamente. Estamos processando...
-    </div>
+    Aguarde um momento. Estamos processando...
+</div>
 </section>
 
 
@@ -126,34 +126,42 @@
         });
     });
 
-   document.addEventListener('DOMContentLoaded', function() {
-        var form = document.getElementById('confirmacao-form');
-        var loadingMessage = document.getElementById('loading-message');
+  document.addEventListener('DOMContentLoaded', function() {
+    var form = document.getElementById('confirmacao-form');
+    var loadingMessage = document.getElementById('loading-message');
 
-        // Se a página foi recarregada após o envio do formulário
-        if (sessionStorage.getItem('formSubmitted')) {
-            form.reset(); // Reseta o formulário
-            sessionStorage.removeItem('formSubmitted'); // Remove o item para evitar loop infinito
-            form.style.display = 'block'; // Mostra o formulário novamente
-        }
+    // Se a página foi recarregada após o envio do formulário
+    if (sessionStorage.getItem('formSubmitted')) {
+        form.reset(); // Reseta o formulário
+        sessionStorage.removeItem('formSubmitted'); // Remove o item para evitar loop infinito
+        form.style.display = 'block'; // Mostra o formulário novamente
+        setTimeout(function() {
+            window.location.reload(); // Recarrega a página após 10 segundos
+        }, 10000);
+    }
 
-        form.addEventListener('submit', function(event) {
-            // Exibe a mensagem de carregamento
-            loadingMessage.style.display = 'block';
+    form.addEventListener('submit', function(event) {
+        // Exibe a mensagem de carregamento
+        loadingMessage.style.display = 'block';
 
-            // Oculta o formulário
-            form.style.display = 'none';
+        // Oculta o formulário
+        form.style.display = 'none';
 
-            // Adiciona um delay para simular processamento (opcional)
-            setTimeout(function() {
-                // Marca que o formulário foi enviado
-                sessionStorage.setItem('formSubmitted', 'true');
-                
-                // Rola para a mensagem de carregamento
-                loadingMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 500);
-        });
+        // Adiciona um delay para simular processamento
+        setTimeout(function() {
+            // Marca que o formulário foi enviado
+            sessionStorage.setItem('formSubmitted', 'true');
+            
+            // Rola para a mensagem de carregamento
+            var offset = 200; // Ajuste este valor para rolar um pouco mais para cima
+            loadingMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+            // Rola um pouco mais para cima após a rolagem
+            window.scrollBy(0, -offset);
+        }, 500);
     });
+});
+
 </script>
 
         
@@ -162,7 +170,7 @@
     <style>
        /* Mensagem de Carregamento */
 .loading-message {
-    margin-top: 2em; /* Ajuste o valor conforme necessário */
+    margin-top: 7em; /* Ajuste o valor conforme necessário */
     padding: 1em;
     background: #f7f7f7;
     border: 1px solid #ddd;
